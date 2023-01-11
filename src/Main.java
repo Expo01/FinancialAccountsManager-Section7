@@ -1,27 +1,67 @@
+
+//section 7 concept integration- Account Organizer
+//Perspective: Holder of accounts as user.
+//considerations for later: making this an array of Accounts assuming an array will accept objects of its subclasses
+
 public class Main {
     public static void main(String[] args) {
 
+//        Account testAccount = new Account(1000, 1, "12345678");
+//        testAccount.calculateMonthlyInterest(testAccount);
+//
+//        testAccount.deposit(12.34);
+//
+//        testAccount.withdraw(1000);
+//        testAccount.withdraw(50);
+//
+//        testAccount.displayLastFourOfAccountNumber();
 
+        FourZeroOneK test401k = new FourZeroOneK(100000,"12345678","high",5,70);
+        test401k.withdraw(900);
+        test401k.deposit(500);
+        test401k.calculateMonthlyInterest(test401k);
     }
 }
 
-//section 7 concept integration- bank account is best idea i think but we can have base account and inherit from base
-//for things like savings, vs 401k, vs brokerage which all do different stuff and have some maths involved
-//THINKING ABOUT STATE AND BEHAVIOR OF ALL CLASSES/OBJECTS
-    //main -->
-        // Account holder: separate class. no Inheritance. fields: name, DOB, SSN, address,
-        // Bank/Branch? its all online.. not really relevant.. i don't know mine that's for sure...
-        // Account base class: accepts AccountHolder as a field? Maybe accepts a bank as a field too?
-                            // All accounts should have a value, have interest accrual potential, have an open/close date
-                            //require a signature
-            //401k
-            //checking
-            //Roth IRA
-            //Savings
-            //Brokerage: boolean confirmation of risk
-            //option account: ?
 
-//consider using indexOf, startingIndex, and .substring to print just the last 4 of SSN or only print the last digits of the account
+// AccountHolder: separate class. no Inheritance. fields: name, DOB, 401k, checking, roth, etc.
+    // Use constructor overloading with constructor chaining and have one constructor of entirely default values
+
+//Subclasses of Account class
+
+    //checking
+        //field
+            //feeExemption: lets use a ternary to derive feeExemption status from accountBalance if over 1,000 or something
+        //methods
+            //transferFunds: (if I really want to get fancy I could perhaps call the getBalance of another class and this.set an updated amount)
+
+    //Roth IRA
+        //fields:
+            //riskProfile (for simplicity just repeat this and limit options)
+        //methods
+            //withdraw (overrided) for 65+ y/o condition and include penalty if < 65
+            //deposit (overrided) incrementing sum up to 6,000 maximum
+    //Savings
+        //methods
+            //withdraw (overrided) print output that direct withdraw not accepted, transfer only
+            //transfer
+    //Brokerage:
+        // fields
+            //for a later time, could have an array list of stocks/ETF/Indexes and sum stuff up. Get real crazy about if these assets offer dividends, etc.
+        //methods
+            //deposit (overrided) I think a way to demonstrate polymorphism would be to say if age of person < 18 using birthdate field of super class
+                    // that they are ineligible to create an account. Must use a field form parent class to warrant use of protected keyword for use
+                    //of that protected field in the subclass method condition
+
+
+
+//================================================================================
+//92-93: WorkerInheritance: 'toString' auto-generation, .substring method of String class,
+//97: StringInspectionAndComparison: %c,  string.isEmpty, string.isBlank, stringObject.equals, stringObject.equalsIgnoreCase, stringObject.startsWith
+// stringObject.endsWith, stringObject.contains, stringObject.contentEquals
+//=================================================================================
+
+
 
 // 75-78: getter, setter, 'this' keyword. encapsulation with use of private fields
 // 79 bankAccountChallenge: getters, setters, math methods
