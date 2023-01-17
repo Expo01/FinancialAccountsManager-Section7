@@ -5,8 +5,10 @@ public class Account {
     private String accountNumber;
 
 
+
     public Account(int accountBalance, double interestRate, String accountNumber) {
-        this.accountBalance = accountBalance;
+        this.accountBalance = accountBalance; // only 1 trailing 0. can't use String.format which is only good for printing
+                                            // number as a String, not passing it as parameter or setting as # value
         this.interestRate = interestRate;
         this.accountNumber = accountNumber;
 
@@ -14,7 +16,8 @@ public class Account {
 
     public void calculateMonthlyInterest(Account account) {
         double monthlyInterest = (account.accountBalance * (account.interestRate / 100) / 12);
-        System.out.println(String.format("%.2f", monthlyInterest) + " dollars of monthly positive interest"); // 'sout' used instead of 'souf' to allow additional text outside of .format structure
+        System.out.println(String.format("%.2f", monthlyInterest) + " dollars of monthly positive interest"); // 'sout'
+        // used instead of 'souf' to allow additional text outside of .format structure
     }
 
     public void deposit(double depositAmount) {

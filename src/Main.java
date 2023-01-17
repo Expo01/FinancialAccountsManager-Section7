@@ -1,46 +1,38 @@
 
-//section 7 concept integration- Account Organizer
-//Perspective: Holder of accounts as user.
+
 //considerations for later: making this an array of Accounts assuming an array will accept objects of its subclasses
 
 public class Main {
     public static void main(String[] args) {
+        FourZeroOneK bobs401k = new FourZeroOneK(10000,"12345678","high",5,33);
+        Checking bobsChecking = new Checking(5000,1.5,"22334455");
+        Roth bobsRoth = new Roth(3000,"56568790","high",33);
+        Savings bobsSaving = new Savings(6000,3,"87654321");
 
-//        Account testAccount = new Account(1000, 1, "12345678");
-//        testAccount.calculateMonthlyInterest(testAccount);
-//
-//        testAccount.deposit(12.34);
-//
-//        testAccount.withdraw(1000);
-//        testAccount.withdraw(50);
-//
-//        testAccount.displayLastFourOfAccountNumber();
 
-        FourZeroOneK test401k = new FourZeroOneK(100000,"12345678","high",5,70);
-        test401k.withdraw(900);
-        test401k.deposit(500);
-        test401k.calculateMonthlyInterest(test401k);
+        AccountHolder bob = new AccountHolder("Bob", 1990, bobs401k, bobsRoth, bobsChecking, bobsSaving);
+
+
+        System.out.println(bob.getChecking().getAccountBalance());
+        System.out.println(bob.getSavings().getAccountBalance());
+//         System.out.println(bobsSaving.getAccountBalance());   problem here is that the subclasses are not effectively
+        // hidden and don't have to be called through AccountHolder ('bob'). Same output as above.
+        bob.getChecking().transferFunds(300,bobsSaving);
+        System.out.println(bob.getChecking().getAccountBalance()); //could make outputs more specific and say which account the balance is of
+        System.out.println(bob.getSavings().getAccountBalance());
+
     }
 }
 
+//================================================================================
+//*** 80-81: BankAccountWithConstructors:  constructor chaining
+//*** 82: ConstructorChallenge: constructor chained
+//92-93: WorkerInheritance: 'toString' auto-generation, static variable for incrementing total number of accounts
+//stringBuilder just because
+//=================================================================================
 
-// AccountHolder: separate class. no Inheritance. fields: name, DOB, 401k, checking, roth, etc.
-    // Use constructor overloading with constructor chaining and have one constructor of entirely default values
 
-//Subclasses of Account class
 
-    //checking
-        //field
-            //feeExemption: lets use a ternary to derive feeExemption status from accountBalance if over 1,000 or something
-        //methods
-            //transferFunds: (if I really want to get fancy I could perhaps call the getBalance of another class and this.set an updated amount)
-
-    //Roth IRA
-        //fields:
-            //riskProfile (for simplicity just repeat this and limit options)
-        //methods
-            //withdraw (overrided) for 65+ y/o condition and include penalty if < 65
-            //deposit (overrided) incrementing sum up to 6,000 maximum
     //Savings
         //methods
             //withdraw (overrided) print output that direct withdraw not accepted, transfer only
@@ -52,14 +44,6 @@ public class Main {
             //deposit (overrided) I think a way to demonstrate polymorphism would be to say if age of person < 18 using birthdate field of super class
                     // that they are ineligible to create an account. Must use a field form parent class to warrant use of protected keyword for use
                     //of that protected field in the subclass method condition
-
-
-
-//================================================================================
-//92-93: WorkerInheritance: 'toString' auto-generation, .substring method of String class,
-//97: StringInspectionAndComparison: %c,  string.isEmpty, string.isBlank, stringObject.equals, stringObject.equalsIgnoreCase, stringObject.startsWith
-// stringObject.endsWith, stringObject.contains, stringObject.contentEquals
-//=================================================================================
 
 
 

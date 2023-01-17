@@ -2,10 +2,11 @@ public class FourZeroOneK extends Account {
     private String profileRisk;
     private int deferralPercentage;
     private int accountHolderAge;
+    private double annualContribution;
 
     public FourZeroOneK(int accountBalance, String accountNumber, String profileRisk, int deferralPercentage, int accountHolderAge) {
-        super(accountBalance, profileRisk.equals("low")? 5.5: profileRisk.equals("medium")? 7: 8.5, accountNumber); // nested ternary generation of interest rate based on selected profile risk
-                                                                                                                //now 'interestRate' no longer a passed parameter
+        super(accountBalance, profileRisk.equals("low") ? 5.5 : profileRisk.equals("medium") ? 7 : 8.5, accountNumber); // nested ternary generation of interest rate based on selected profile risk
+        //now 'interestRate' no longer a passed parameter
         this.profileRisk = profileRisk;
         this.deferralPercentage = deferralPercentage;
         this.accountHolderAge = accountHolderAge;
@@ -25,14 +26,23 @@ public class FourZeroOneK extends Account {
         } else {
             System.out.println("the 10 year growth of this asset is 8.5%");
             double monthlyInterestForecast = super.getAccountBalance() * .085 / 12;
-            System.out.println("Projected monthly interest is " + String.format("%.2f", monthlyInterestForecast)  + " dollars");
+            System.out.println("Projected monthly interest is " + String.format("%.2f", monthlyInterestForecast) + " dollars");
         }
     }
 
     @Override
     public void deposit(double depositAmount) {
-        super.deposit(depositAmount);
+        double localAnnualContribution = annualContribution; //not sure why I had no introduce local variable. annualContribution
+        //defaulted to zero but somehow in the 'else' statement, is kept getting assigned to the value of 'depositAmount' but
+        // this isn't happening now with local variable
+        if ((annualContribution += depositAmount) <= 22500) {
+            super.deposit(depositAmount);
+        } else {
+            System.out.println("requested contribution would exceed annual limit. Current Annual contribution is " +
+                    localAnnualContribution + ". Maximum remaining contribution amount is " + (22500 - localAnnualContribution));
+        }
     }
+
 
     @Override
     public void withdraw(double withdrawAmount) {
@@ -44,10 +54,10 @@ public class FourZeroOneK extends Account {
                 System.out.println("insufficient funds for withdraw amount of " + withdrawAmount);
             } else {
                 System.out.println("Early withdrawal penalty incurred.\n" +
-                                "Account deducted by value of 15% of requested withdrawal.\n" +
-                                "Withdrawal amount of " + withdrawAmount + " approved.\n" + //need format specifier for decimals
-                                "account penalized " + (withdrawAmount * .15) + " dollars"); //need format specifier for decimals
-                    super.withdraw(withdrawAmount * 1.15);
+                        "Account deducted by value of 15% of requested withdrawal.\n" +
+                        "Withdrawal amount of " + withdrawAmount + " approved.\n" + //need format specifier for decimals
+                        "account penalized " + (withdrawAmount * .15) + " dollars"); //need format specifier for decimals
+                super.withdraw(withdrawAmount * 1.15);
             } //appears as though I can't use a format specifier in a text block.
         } else {
             super.withdraw(withdrawAmount);
@@ -57,10 +67,10 @@ public class FourZeroOneK extends Account {
 
 
 // 401k
-    // fields:
-        //riskProfile (just give 3 options)
-        // deferralPercentage
-    //methods:
-        //withdraw (overrided) for 65+ y/o condition and include penalty if < 65
-        //calculateMonthlyInterest (overrided): consider polymorphism where if risk profile is low vs med vs high, different projections given for 10 year time frame.
-        //deposit (overrided) incrementing sum with 22k maximum. (lets not worry about year right now but could create a deposit class with fields of amount of date to track annual contribution limit)
+// fields:
+//riskProfile (just give 3 options)
+// deferralPercentage
+//methods:
+//withdraw (overrided) for 65+ y/o condition and include penalty if < 65
+//calculateMonthlyInterest (overrided): consider polymorphism where if risk profile is low vs med vs high, different projections given for 10 year time frame.
+//deposit (overrided) incrementing sum with 22k maximum. (lets not worry about year right now but could create a deposit class with fields of amount of date to track annual contribution limit)
