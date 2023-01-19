@@ -14,6 +14,14 @@ public class Account {
 
     }
 
+    public Account(double interestRate, String accountNumber) {
+        this(0,interestRate,accountNumber);
+    }
+
+    public Account(String accountNumber) {
+        this(0,accountNumber);
+    }
+
     public void calculateMonthlyInterest(Account account) {
         double monthlyInterest = (account.accountBalance * (account.interestRate / 100) / 12);
         System.out.println(String.format("%.2f", monthlyInterest) + " dollars of monthly positive interest"); // 'sout'
@@ -47,6 +55,15 @@ public class Account {
 
     public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountBalance=" + accountBalance +
+                ", interestRate=" + interestRate +
+                ", accountNumber='" + accountNumber + '\'' +
+                '}';
     }
 }
 

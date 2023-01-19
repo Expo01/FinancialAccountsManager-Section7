@@ -27,6 +27,13 @@ public class Checking extends Account{
     }
 
     @Override
+    public String toString() {
+        return "Checking{" +
+                "feeExemption=" + feeExemption +
+                "} " + super.toString();
+    }
+
+    @Override
     public double getAccountBalance() {
         if (super.getAccountBalance() < 1000){
             System.out.println("checking account balance is less than $1,000 and holder will be subjected to monthly fee");

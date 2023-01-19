@@ -8,6 +8,13 @@ public class Savings extends Account{
     }
 
     @Override
+    public String toString() {
+        return "Savings{" +
+                "feeExemption=" + feeExemption +
+                "} " + super.toString();
+    }
+
+    @Override
     public void calculateMonthlyInterest(Account account) {
         super.calculateMonthlyInterest(account);
     }

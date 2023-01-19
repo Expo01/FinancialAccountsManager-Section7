@@ -4,6 +4,19 @@ public class AccountHolder {
     private FourZeroOneK fourZeroOneK;
     private Roth roth;
     private Checking checking;
+
+    @Override
+    public String toString() {
+        return "AccountHolder{" +
+                "name='" + name + '\'' +
+                ", yearOfBirth=" + yearOfBirth +
+                ", fourZeroOneK=" + fourZeroOneK +
+                ", roth=" + roth +
+                ", checking=" + checking +
+                ", savings=" + savings +
+                '}';
+    }
+
     private Savings savings;
 
     public AccountHolder(String name, int yearOfBirth, FourZeroOneK fourZeroOneK, Roth roth, Checking checking, Savings savings) {

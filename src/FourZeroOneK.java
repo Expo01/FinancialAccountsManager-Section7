@@ -2,15 +2,33 @@ public class FourZeroOneK extends Account {
     private String profileRisk;
     private int deferralPercentage;
     private int accountHolderAge;
+
+    @Override
+    public String toString() {
+        return "FourZeroOneK{" +
+                "profileRisk='" + profileRisk + '\'' +
+                ", deferralPercentage=" + deferralPercentage +
+                ", accountHolderAge=" + accountHolderAge +
+                ", annualContribution=" + annualContribution +
+                "} " + super.toString();
+    }
+
     private double annualContribution;
 
     public FourZeroOneK(int accountBalance, String accountNumber, String profileRisk, int deferralPercentage, int accountHolderAge) {
-        super(accountBalance, profileRisk.equals("low") ? 5.5 : profileRisk.equals("medium") ? 7 : 8.5, accountNumber); // nested ternary generation of interest rate based on selected profile risk
-        //now 'interestRate' no longer a passed parameter
+        super(accountBalance, profileRisk.equals("low") ? 5.5 : profileRisk.equals("medium") ? 7 : 8.5, accountNumber);
         this.profileRisk = profileRisk;
-        this.deferralPercentage = deferralPercentage;
+        this.deferralPercentage = deferralPercentage;           // constructor
         this.accountHolderAge = accountHolderAge;
     }
+
+    public FourZeroOneK(String accountNumber, int accountHolderAge) {
+        this(0,accountNumber,"low",3, accountHolderAge);
+        // format for constructor chaining is the parameters are the same and in the same order except the values I want
+        // to hard code. No other content is necessary in the method block except the 'this' call to source constructor
+        // which will have the same format as the constructor except inclusion of hard coded values
+    }
+
 
     @Override
     public void calculateMonthlyInterest(Account account) {

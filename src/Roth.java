@@ -11,6 +11,15 @@ public class Roth extends Account{
     }
 
     @Override
+    public String toString() {
+        return "Roth{" +
+                "riskProfile='" + riskProfile + '\'' +
+                ", accountHolderAge=" + accountHolderAge +
+                ", annualContribution=" + annualContribution +
+                "} " + super.toString();
+    }
+
+    @Override
     public void calculateMonthlyInterest(Account account) {
         super.calculateMonthlyInterest(account);
     }

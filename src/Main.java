@@ -4,14 +4,14 @@
 
 public class Main {
     public static void main(String[] args) {
+
         FourZeroOneK bobs401k = new FourZeroOneK(10000,"12345678","high",5,33);
         Checking bobsChecking = new Checking(5000,1.5,"22334455");
         Roth bobsRoth = new Roth(3000,"56568790","high",33);
         Savings bobsSaving = new Savings(6000,3,"87654321");
 
-
         AccountHolder bob = new AccountHolder("Bob", 1990, bobs401k, bobsRoth, bobsChecking, bobsSaving);
-
+        System.out.println(bob);
 
         System.out.println(bob.getChecking().getAccountBalance());
         System.out.println(bob.getSavings().getAccountBalance());
@@ -25,9 +25,6 @@ public class Main {
 }
 
 //================================================================================
-//*** 80-81: BankAccountWithConstructors:  constructor chaining
-//*** 82: ConstructorChallenge: constructor chained
-//92-93: WorkerInheritance: 'toString' auto-generation, static variable for incrementing total number of accounts
 //stringBuilder just because
 //=================================================================================
 
