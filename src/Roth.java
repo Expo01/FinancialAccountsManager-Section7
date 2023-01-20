@@ -1,14 +1,19 @@
-public class Roth extends Account{
+public class Roth extends Account {
 
     private String riskProfile;
     private int accountHolderAge;
     private double annualContribution;
 
-    public Roth(int accountBalance, String accountNumber, String riskProfile,int accountHolderAge) {
-        super(accountBalance, riskProfile.equals("low")? 5.5: riskProfile.equals("medium")? 7:8.5, accountNumber);
+    public Roth(int accountBalance, String accountNumber, String riskProfile, int accountHolderAge) {
+        super(accountBalance, riskProfile.equals("low") ? 5.5 : riskProfile.equals("medium") ? 7 : 8.5, accountNumber);
         this.riskProfile = riskProfile;
         this.accountHolderAge = accountHolderAge;
     }
+
+    public Roth(String accountNumber, int accountHolderAge) {
+        this(0, accountNumber, "low", accountHolderAge);
+    }
+
 
     @Override
     public String toString() {
@@ -64,12 +69,8 @@ public class Roth extends Account{
     public double getAccountBalance() {
         return super.getAccountBalance();
     }
-
-    @Override
-    public void setAccountBalance(double accountBalance) {
-        super.setAccountBalance(accountBalance);
-    }
 }
+
 
 
 

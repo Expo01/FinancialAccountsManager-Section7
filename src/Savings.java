@@ -7,6 +7,11 @@ public class Savings extends Account{
         this.feeExemption = (accountBalance > 1000)? true:false;
     }
 
+    public Savings(double interestRate, String accountNumber) {
+        this(0,interestRate,accountNumber);
+    }
+
+
     @Override
     public String toString() {
         return "Savings{" +

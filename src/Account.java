@@ -53,9 +53,6 @@ public class Account {
         return accountBalance;
     }
 
-    public void setAccountBalance(double accountBalance) {
-        this.accountBalance = accountBalance;
-    }
 
     @Override
     public String toString() {

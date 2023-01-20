@@ -6,6 +6,10 @@ public class Checking extends Account{
         this.feeExemption = (accountBalance > 1000)? true: false;
     }
 
+    public Checking(double interestRate, String accountNumber) {
+        this(0,interestRate,accountNumber);
+    }
+
     @Override
     public void calculateMonthlyInterest(Account account) {
         super.calculateMonthlyInterest(account);
