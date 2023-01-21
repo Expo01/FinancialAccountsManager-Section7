@@ -32,7 +32,8 @@ public class FourZeroOneK extends Account {
 
     @Override
     public void calculateMonthlyInterest(Account account) {
-        System.out.println("Markets fluctuate, the following projection is based on asset history does not a guarantee return");
+        StringBuilder randomBuilder = new StringBuilder("Markets fluctuate, the following projection is based on asset history does not a guarantee return");
+        System.out.println(randomBuilder);
         if (this.profileRisk.equals("low")) {
             System.out.println("the 10 year average growth of this asset is 5.5%");
             double monthlyInterestForecast = super.getAccountBalance() * .055 / 12;
